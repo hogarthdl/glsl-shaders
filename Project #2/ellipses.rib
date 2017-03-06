@@ -1,0 +1,33 @@
+##RenderMan RIB
+version 3.03
+Declare "Ar" "uniform float"
+Declare "Br" "uniform float"
+Declare "NoiseAmp"  "uniform float"
+Declare "DispAmp"  "uniform float"
+
+Display "ellipses.tiff" "file" "rgb"
+Format 1024 1024-1              ## define size with height and pixel aspect
+
+ShadingRate 1
+LightSource "ambientlight" 1 "intensity" [0.25]
+LightSource "distantlight" 2 "intensity" [0.75] "from" [5 8 -10] "to" [0 0 0]
+
+ShadingRate 1
+Projection "perspective" "fov" [70] ##provide perspective projection with a certain field of view.
+WorldBegin
+  Attribute "bound" "displacement" [1.5]
+  Translate 0 0 6  # move along the z axis
+  
+    Surface "ellipses" "Ar" 0.08 "Br" 0.16 "NoiseAmp" 0. "DispAmp" 0.1
+	Displacement "ovalnoised" "Ar" 0.08 "Br" 0.16 "NoiseAmp" 0. "DispAmp" 0.07
+	
+    Color [0. .6 1.]  # define surface color
+    Opacity [1 1 1]
+  TransformBegin
+    Rotate 120 1. 0. 0.  ##rotate around x axis for 120 degrees ?
+	Rotate 30 0. 1. 0.
+    Sphere 3 -3 3 360	##create a sphere
+  TransformEnd
+ 
+WorldEnd
+
