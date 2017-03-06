@@ -1,0 +1,18 @@
+##OpenGL GLIB
+LookAt  0 0 3  0 0 0  0 1 0
+Perspective 70
+MessageBox This implements the Alpha and ChromaDepth extra credit
+
+Vertex   ovalnoise.vert
+Fragment ovalnoise.frag
+Program  OvalNoise                                               \
+        uAd <.01 .05 .5>  uBd <.01 .05 .5>                       \
+        uNoiseAmp <0. 0. 1.>  uNoiseFreq <0. 1. 10.>      	 	 \
+        uAlpha <0. 1. 1.>                                        \
+        uTol <0. 0. 1.>											 \
+		uUseChromaDepth <false>									\
+		uChromaBlue <-5. -2.4 -1.> 								\
+		uChromaRed <-3. 1.1 2.> 
+		
+Color 1. .9 0
+Sphere 1. 60 60
